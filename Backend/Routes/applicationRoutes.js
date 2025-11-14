@@ -8,6 +8,6 @@ const router = express.Router()
 router.post("/:jobId/apply",protect, upload.single('resume'), apply )
 router.get("/getmyapplications", protect, getMyApplications)
 router.get("/:jobId", protect, isEmployer, getApplicants)
-router.put('/:id/status', protect, isEmployer, updateApplicationStatus)
+router.put('/updatestatus/:id', protect, isEmployer, updateApplicationStatus)
 
 export default router

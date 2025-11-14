@@ -124,3 +124,13 @@ export const deleteJob = async(req, res) => {
     message : err.message
   }) }
 }
+
+
+export const getmyjobs = async (req, res) => {
+  try {
+const jobs = await Job.find({ employer: req.user._id }).populate("employer", "name email");
+    res.status(200).json({ success: true, jobs });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+}

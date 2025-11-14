@@ -1,0 +1,164 @@
+/* Prevent horizontal overflow */
+* {
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    overflow-x: hidden;
+  }
+  
+
+.about-container {
+    width: 100%;
+    padding: 40px 20px;
+    background: #f7f8fc;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Hero Section */
+  .about-hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #4e73df, #1cc88a);
+    color: #fff;
+    border-radius: 12px;
+    margin-bottom: 40px;
+  }
+  
+  .about-hero h1 {
+    font-size: 2.6rem;
+    margin-bottom: 10px;
+  }
+  
+  .about-hero p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+  }
+  
+  /* Section */
+  .about-section {
+    margin: 40px 0;
+    text-align: center;
+  }
+  
+  .about-section h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .about-section p {
+    width: 80%;
+    margin: auto;
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  /* Grid */
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin: 40px 0;
+  }
+  
+  .about-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.08);
+    transition: 0.3s ease-in-out;
+  }
+  
+  .about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0,0,0,0.12);
+  }
+  
+  .about-card h3 {
+    font-size: 1.4rem;
+    color: #4e73df;
+    margin-bottom: 10px;
+  }
+  
+  .about-card p {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  /* Features List */
+  .about-section ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  .about-section li {
+    font-size: 1rem;
+    margin: 8px 0;
+    color: #444;
+    background: #e9f2ff;
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 8px;
+  }
+  
+  /* ------------------  
+     RESPONSIVENESS  
+  ------------------- */
+  
+  @media screen and (max-width: 992px) {
+    .about-section p {
+      width: 90%;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .about-hero h1 {
+      font-size: 2.2rem;
+    }
+  
+    .about-hero p {
+      font-size: 1rem;
+    }
+  
+    .about-card h3 {
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .about-hero {
+      padding: 40px 20px;
+    }
+  
+    .about-hero h1 {
+      font-size: 1.8rem;
+    }
+  
+    .about-section p {
+      width: 100%;
+    }
+  
+    .about-section h2 {
+      font-size: 1.6rem;
+    }
+  
+    .about-card {
+      padding: 18px;
+    }
+  
+    .about-card h3 {
+      font-size: 1.1rem;
+    }
+  
+    .about-section li {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+    }
+  }
+  

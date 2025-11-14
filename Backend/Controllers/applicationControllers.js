@@ -40,37 +40,34 @@ export const apply = async (req, res) => {
 
 export const getApplicants = async (req, res) => {
   try {
-    const job = await Job.findById(req.params.jobId);
-    if (!job)
-      return res.status(404).json({ success: false, message: "Job not found" });
-    if (job.employer.toString() !== req.user._id.toString())
-      return res.status(403).json({ success: false, message: "Not owner" });
-    const apps = await Application.find({ job: job._id }).populate(
-      "applicant",
-      "name email resumeUrl phone"
-    );
-    res.json({ success: true, apps });
+    const { jobId } = req.params;
+    const applications = await Application.find({ job: jobId })
+      .populate("applicant", "name email resumeUrl")
+      .populate("job", "title");
+
+    res.status(200).json({ success: true, applications });
   } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    res.status(500).json({ success: false, message: err.message });
   }
 };
 
 export const getMyApplications = async (req, res) => {
   try {
-    const apps = await Application.find({ applicant: req.user._id }).populate(
-      "job"
-    );
-    res.json({ success: true, apps });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
+    const applications = await Application.find({ applicant: req.user._id })
+      .populate({
+        path: "job",
+        populate: {
+          path: "employer",
+          select: "name email",
+        },
+      });
+
+    res.json({ success: true, applications });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
   }
 };
+
 
 export const updateApplicationStatus = async (req, res) => {
   try {

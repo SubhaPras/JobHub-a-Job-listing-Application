@@ -1,0 +1,104 @@
+.navbar {
+  background:  #1DA1F2;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  font-weight: 800;
+  color: white;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #dbeafe;
+}
+
+.login-btn,
+.logout-btn {
+  background-color: white;
+  color: #3b82f6;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover{
+  background-color: rgb(3, 181, 3);
+  color: white;
+}
+.logout-btn:hover {
+  background-color: red;
+  color: white;
+}
+
+.profile-icon {
+  display: flex;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+}
+
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background: white;
+  border-radius: 3px;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: #1e293b;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    transform: translateY(-150%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .nav-links.open {
+    transform: translateY(0);
+  }
+
+  .menu-icon {
+    display: flex;
+  }
+}
