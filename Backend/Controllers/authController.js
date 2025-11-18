@@ -87,7 +87,6 @@ export const logout = (req, res) => {
   res.json({ success: true, message: "Logged out successfully" });
 };
 
-
 export const getMe = async (req, res) => {
   try {
     res.json({ success: true, user: req.user });
