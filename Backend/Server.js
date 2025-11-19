@@ -13,6 +13,7 @@ import userRoutes from "./Routes/userRoutes.js";
 import jobRoutes from "./Routes/jobRoutes.js";
 import applicationRoutes from "./Routes/applicationRoutes.js";
 import contactRoutes from "./Routes/ContactRoutes.js"
+import adminRoutes from "./Routes/adminRoutes.js"
 
 dotenv.config();
 connectDB();
@@ -39,6 +40,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/jobs", jobRoutes);
 app.use("/api/applications", applicationRoutes );
 app.use("/api/contact", contactRoutes)
+app.use('/api/admin', adminRoutes)
 // Error handler
 app.use(errorHandler);
 
