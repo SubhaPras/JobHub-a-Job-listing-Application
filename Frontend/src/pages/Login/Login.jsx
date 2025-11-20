@@ -71,7 +71,7 @@ const Login = () => {
               className="eye"
               onClick={() => setShowPassword((prev) => !prev)}
             >
-              {showPassword ? "🙈" : "👁️"}
+              {showPassword ? "HIDE" : "SHOW"}
             </span>
           </div>
 
