@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
 import "./Profile.css";
 
 const Profile = () => {
@@ -49,17 +49,15 @@ const Profile = () => {
         }
       );
       if (res.data.success) {
-        setMessage("✅ Profile updated successfully!");
         setUser(res.data.user);
-        toast.success("Profile updated successfully!")
+        setMessage("Profile updated successfully!");
+        toast.success("Profile updated!");
         setShowModal(false);
       } else {
-        setMessage(res.data.message || "Something went wrong");
-        toast.error("Something went wrong")
+        toast.error("Something went wrong");
       }
     } catch (err) {
-      setMessage(err.response?.data?.message || "Error updating profile");
-      toast.error("Error updating profile")
+      toast.error("Error updating profile");
     }
   };
 
@@ -73,15 +71,16 @@ const Profile = () => {
             {user?.name?.charAt(0).toUpperCase()}
           </div>
           <h2>{user.name}</h2>
-          <p className="profile-email">{user.email}</p>
+          <p className="profile-email">📩 {user.email}</p>
         </div>
 
         <div className="profile-info">
-          <p><strong>Role:</strong> {user.role}</p>
-          <p><strong>Phone:</strong> {user.phone || "Not added"}</p>
+          <p><strong>👤 Role:</strong> {user.role}</p>
+          <p><strong>📞 Phone:</strong> {user.phone || "Not added"}</p>
+
           {user.resumeUrl && (
             <p>
-              <strong>Resume:</strong>{" "}
+              <strong>📝 Resume:</strong>{" "}
               <a href={user.resumeUrl} target="_blank" rel="noopener noreferrer">
                 View Resume
               </a>
@@ -91,13 +90,13 @@ const Profile = () => {
 
         <div className="profile-actions">
           <button className="edit-btn" onClick={() => setShowModal(true)}>
-            ✏️ Edit Profile
+            Edit Profile
           </button>
           <button
             className="view-apps-btn"
             onClick={() => navigate("/myapplications")}
           >
-            📄 View My Applications
+            View My Applications
           </button>
         </div>
 
@@ -108,6 +107,7 @@ const Profile = () => {
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <h3>Update Profile</h3>
+
             <form onSubmit={handleUpdate}>
               <label>Name</label>
               <input
@@ -121,7 +121,6 @@ const Profile = () => {
                 type="text"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                placeholder="Enter your phone number"
               />
 
               <label>Upload New Resume</label>

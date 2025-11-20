@@ -5,9 +5,12 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
+
         <div className="footer-left">
           <h2>JOB HUB</h2>
-          <p>Your trusted platform for finding the right job and hiring the best talent.</p>
+          <p>
+            Your trusted platform for finding the right job and hiring the best talent.
+          </p>
         </div>
 
         <div className="footer-links">
@@ -25,6 +28,7 @@ const Footer = () => {
           <p>Email: support@jobfinder.com</p>
           <p>Phone: +91 9876543210</p>
         </div>
+
       </div>
 
       <div className="footer-bottom">

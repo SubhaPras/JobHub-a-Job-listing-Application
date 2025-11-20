@@ -5,8 +5,8 @@ const Hero = () => {
   return (
     <section className="hero">
       <div className="hero-content">
-        <h1>Your Dream Job That Make You Come</h1>
-        <p>Discover opportunities that match your skills and goals.</p>
+        <h1 className="hero-title">Find Your Next Great Opportunity</h1>
+        <p className="hero-sub">Search roles that match your goals.</p>
 
         <div className="search-bar">
           <input type="text" placeholder="Job title or keyword..." />

@@ -1,67 +1,121 @@
+/* Container */
 .create-job-container {
-    max-width: 700px;
-    margin: 50px auto;
-    padding: 30px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 780px;
+  margin: 60px auto;
+  padding: 40px;
+  background: #121212;
+  border-radius: 18px;
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.create-job-container h2 {
+  text-align: center;
+  color: #1565c0;
+  /* text-shadow: 0 0 14px rgba(30,168,255,0.4); */
+  margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Form Inputs */
+.create-job-form label {
+  display: block;
+  margin-top: 16px;
+  font-weight: 500;
+  color: #cfcfcf;
+}
+
+.create-job-form input,
+.create-job-form textarea,
+.create-job-form select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  background: #1e1f24;
+  border: 1px solid #2d2f36;
+  border-radius: 10px;
+  color: #eaeaea;
+  font-size: 0.95rem;
+  transition: 0.25s ease;
+}
+
+.create-job-form input:focus,
+.create-job-form textarea:focus,
+.create-job-form select:focus {
+  border-color: #4e8cff;
+  box-shadow: 0 0 8px rgba(78, 140, 255, 0.4);
+}
+
+/* Description textarea */
+.create-job-form textarea {
+  resize: vertical;
+}
+
+/* Salary */
+.salary-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.salary-section div label {
+  margin-top: 0;
+}
+
+/* Button */
+.create-job-form button {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  margin-top: 25px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #4e8cff, #6a5cff);
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: 0.25s ease;
+  transform: translateY(0);
+}
+
+.create-job-form button:hover {
+  background: linear-gradient(135deg, #6a5cff, #4e8cff);
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(78, 140, 255, 0.4);
+}
+
+/* Message */
+.job-message {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 1rem;
+  color: #71ffa1;
+  font-weight: 500;
+  animation: bounceIn 0.4s ease;
+}
+
+@keyframes bounceIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .create-job-container {
+    padding: 25px;
+    margin: 30px 15px;
   }
-  
-  .create-job-container h2 {
-    text-align: center;
-    color: #222;
-    margin-bottom: 25px;
-  }
-  
-  .create-job-form label {
-    display: block;
-    margin-top: 12px;
-    font-weight: 500;
-    color: #333;
-  }
-  
-  .create-job-form input,
-  .create-job-form textarea,
-  .create-job-form select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 6px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 15px;
-  }
-  
+
   .salary-section {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    flex-direction: column;
+    gap: 10px;
   }
-  
-  .salary-section div {
-    flex: 1;
-  }
-  
-  .create-job-form button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    margin-top: 20px;
-    width: 100%;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .create-job-form button:hover {
-    background-color: #0056b3;
-  }
-  
-  .job-message {
-    margin-top: 15px;
-    text-align: center;
-    color: green;
-    font-weight: 500;
-  }
-  
+}

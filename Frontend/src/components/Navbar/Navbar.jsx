@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -9,7 +9,11 @@ const Navbar = () => {
   const [user, setUser] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isActive = (path) => location.pathname === path ? "active" : "";
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -17,6 +21,7 @@ const Navbar = () => {
         const res = await axios.get("http://localhost:3000/api/auth/me", {
           withCredentials: true,
         });
+
         if (res.data.success) {
           setUser(res.data.user);
           setIsLoggedIn(true);
@@ -56,22 +61,22 @@ const Navbar = () => {
       </div>
 
       <div className={`nav-links ${menuOpen ? "open" : ""}`}>
-        <a href="/">Home</a>
-        <a href="/jobs">Jobs</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
+        <a href="/" className={isActive("/")}>Home</a>
+        <a href="/jobs" className={isActive("/jobs")}>Jobs</a>
+        <a href="/about" className={isActive("/about")}>About</a>
+        <a href="/contact" className={isActive("/contact")}>Contact</a>
 
         {isLoggedIn ? (
           user?.role === "employer" ? (
             <>
-              <a href="/employerdashboard">Dashboard</a>
+              <a href="/employerdashboard" className={isActive("/employerdashboard")}>Dashboard</a>
               <button className="logout-btn" onClick={handleLogout}>
                 Logout
               </button>
             </>
           ) : (
             <>
-              <a href="/profile" className="profile-icon">
+              <a href="/profile" className={`profile-icon ${isActive("/profile")}`}>
                 <CgProfile size={24} />
               </a>
               <button className="logout-btn" onClick={handleLogout}>

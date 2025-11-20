@@ -1,228 +1,237 @@
-/* --- Layout --- */
+/* ===== Dark Theme Base ===== */
 .applicants-page {
-    background: linear-gradient(135deg, #eef6ff, #ffffff);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 50px 20px;
+  background: #0d1117;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* ===== Container ===== */
+.applicants-container {
+  width: 900px;
+  max-width: 95%;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border-radius: 14px;
+  padding: 35px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.45);
+  animation: fadeIn 0.4s ease;
+}
+
+.applicants-container h2 {
+  text-align: center;
+  color: #e6edf3;
+  font-size: 26px;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+/* ===== Status message ===== */
+.status-message {
+  background: rgba(46, 160, 67, 0.2);
+  border: 1px solid rgba(63, 185, 80, 0.5);
+  color: #3fb950;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+/* ===== Empty State ===== */
+.no-applicants {
+  font-size: 16px;
+  text-align: center;
+  color: #b1b6c1;
+}
+
+/* ===== Applicant Card ===== */
+.applicant-card {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 22px 25px;
+  margin-bottom: 22px;
+  display: flex;
+  justify-content: space-between;
+  transition: 0.25s ease;
+}
+
+.applicant-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== Left Section ===== */
+.applicant-left {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.applicant-name {
+  color: #58a6ff;
+  font-size: 19px;
+  margin-bottom: 6px;
+}
+
+.applicant-email {
+  color: #c9d1d9;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.label {
+  font-weight: 600;
+  color: #e6edf3;
+  margin-bottom: 5px;
+}
+
+.cover-letter {
+  background: rgba(56, 139, 253, 0.1);
+  border-left: 4px solid #1f6feb;
+  padding: 12px;
+  border-radius: 6px;
+  color: #c9d1d9;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.no-cover {
+  color: #8b949e;
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+/* ===== Resume Links ===== */
+.resume-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.resume-link {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.resume-link:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.no-resume {
+  color: #8b949e;
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* ===== Right Section ===== */
+.applicant-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 180px;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* ===== Status Chip ===== */
+.current-status {
+  text-align: right;
+  color: white;
+}
+
+.status-chip {
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-top: 5px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-chip.applied {
+  background: rgba(56, 139, 253, 0.2);
+  color: #58a6ff;
+}
+
+.status-chip.reviewed {
+  background: rgba(255, 171, 61, 0.15);
+  color: #ffab3d;
+}
+
+.status-chip.accepted {
+  background: rgba(46, 160, 67, 0.2);
+  color: #3fb950;
+}
+
+.status-chip.rejected {
+  background: rgba(248, 81, 73, 0.2);
+  color: #f85149;
+}
+
+/* ===== Dropdown ===== */
+.update-block select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  color: #e6edf3;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.update-block .sr-only {
+  color: white;
+}
+
+.update-block select:hover {
+  border-color: #58a6ff;
+}
+
+.update-block select:focus {
+  border-color: #1f6feb;
+  outline: none;
+}
+
+/* ===== Loading ===== */
+.applicants-loading {
+  text-align: center;
+  margin-top: 100px;
+  color: #c9d1d9;
+  font-size: 18px;
+}
+
+/* ===== Fade Animation ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
   }
-  
-  .applicants-container {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
-    width: 900px;
-    max-width: 95%;
-    padding: 35px;
-    animation: fadeIn 0.4s ease;
+  to {
+    opacity: 1;
   }
-  
-  .applicants-container h2 {
-    text-align: center;
-    color: #222;
-    margin-bottom: 30px;
-    font-size: 24px;
-    letter-spacing: 0.5px;
-  }
-  
-  .status-message {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-    border: 1px solid #a5d6a7;
-    padding: 10px 15px;
-    border-radius: 6px;
-    text-align: center;
-    margin-bottom: 20px;
-    font-weight: 500;
-  }
-  
-  .no-applicants {
-    text-align: center;
-    color: #666;
-    font-size: 16px;
-  }
-  
-  /* --- Applicant Card --- */
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 750px) {
   .applicant-card {
-    display: flex;
-    justify-content: space-between;
-    background: #f9fbff;
-    border: 1px solid #e4ebf7;
-    border-radius: 10px;
-    padding: 20px 25px;
-    margin-bottom: 20px;
-    transition: all 0.3s ease;
-  }
-  
-  .applicant-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  }
-  
-  /* --- Left Section --- */
-  .applicant-left {
-    flex: 1;
-    padding-right: 20px;
-  }
-  
-  .applicant-name {
-    color: #007bff;
-    margin-bottom: 5px;
-    font-size: 18px;
-  }
-  
-  .applicant-email {
-    color: #444;
-    margin-bottom: 12px;
-    font-size: 14px;
-  }
-  
-  .label {
-    font-weight: 600;
-    color: #333;
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
-  
-  .cover-letter {
-    background: #f1f7ff;
-    padding: 10px;
-    border-radius: 6px;
-    border-left: 4px solid #007bff;
-    font-size: 14px;
-    color: #333;
-    margin-bottom: 10px;
-    line-height: 1.5;
-  }
-  
-  .no-cover {
-    font-size: 14px;
-    color: #888;
-    font-style: italic;
-    margin-bottom: 10px;
-  }
-  
-  /* --- Resume Links --- */
-  .resume-links {
-    display: flex;
     flex-direction: column;
-    gap: 8px;
   }
-  
-  .resume-link {
-    color: black;
-    text-decoration: none;
-    font-weight: 500;
-  }
-  
-  .resume-link:hover {
-    text-decoration: underline;
-    color: white;
-  }
-  
-  .no-resume {
-    color: #777;
-    font-size: 14px;
-  }
-  
-  /* --- Right Section --- */
+
   .applicant-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-between;
-    min-width: 170px;
-    gap: 10px;
+    width: 100%;
+    align-items: flex-start;
+    margin-top: 15px;
   }
-  
-  /* --- Status --- */
-  .current-status {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-  
-  .status-chip {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 5px;
-    font-size: 13px;
-    font-weight: 600;
-    margin-top: 3px;
-    text-transform: capitalize;
-  }
-  
-  .status-chip.applied {
-    background: #e3f2fd;
-    color: #1565c0;
-  }
-  
-  .status-chip.reviewed {
-    background: #fff3e0;
-    color: #ef6c00;
-  }
-  
-  .status-chip.accepted {
-    background: #e8f5e9;
-    color: #2e7d32;
-  }
-  
-  .status-chip.rejected {
-    background: #ffebee;
-    color: #c62828;
-  }
-  
-  /* --- Dropdown --- */
+
   .update-block select {
-    padding: 6px 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    background: #fff;
-    cursor: pointer;
-    transition: border-color 0.3s;
+    width: 100%;
   }
-  
-  .update-block select:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  /* --- Loading --- */
-  .applicants-loading {
-    color: #333;
-    font-size: 18px;
-    text-align: center;
-    margin-top: 100px;
-  }
-  
-  /* --- Animations --- */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* --- Responsive --- */
-  @media (max-width: 700px) {
-    .applicant-card {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .applicant-right {
-      align-items: flex-start;
-      width: 100%;
-    }
-  
-    .update-block select {
-      width: 100%;
-    }
-  }
-  
+}

@@ -18,8 +18,7 @@ const ViewApplicants = () => {
           `http://localhost:3000/api/applications/${jobId}`,
           { withCredentials: true }
         );
-        // console.log("GET applicants response:", res.data);
-        // your backend returns { success: true, apps } or { success: true, applications }
+        
         const apps = res.data.applications ?? res.data.apps ?? res.data.appsList ?? [];
         setApplications(apps);
       } catch (err) {
@@ -71,9 +70,7 @@ const ViewApplicants = () => {
           <p className="no-applicants">No applicants yet.</p>
         ) : (
           applications.map((app) => {
-            // safety: application may have job populated or not
-            // app.applicant may be populated (object) or an id
-            // console.log("application item:", app);
+           
             const applicant = app.applicant || {};
             const profileResume = applicant.resumeUrl || null;
             const applicationResume = app.resumeUrl || null; // set when applicant uploaded during apply
@@ -129,7 +126,7 @@ const ViewApplicants = () => {
                   </div>
 
                   <div className="update-block">
-                    <label htmlFor={`status-${app._id}`} className="sr-only">Update status</label>
+                    <label htmlFor={`status-${app._id}`} className="sr-only">Update status </label>
                     <select
                       id={`status-${app._id}`}
                       value={app.status}

@@ -13,8 +13,8 @@ const Register = () => {
     phone: "",
     companyInfo: "",
   });
-  const [showPassword, setShowPassword] = useState(false);
 
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -33,8 +33,8 @@ const Register = () => {
 
       if (res.data.success) {
         toast.success("Registered successfully!");
-        localStorage.setItem("token", res.data?.token)
-        navigate('/')
+        localStorage.setItem("token", res.data?.token);
+        navigate("/");
       }
     } catch (err) {
       toast.error(err.response?.data?.message || "Registration failed");
@@ -42,14 +42,16 @@ const Register = () => {
   };
 
   return (
-    <div className="Register-auth-container">
-      <div className="Register-auth-card">
-        <h2>Create Account</h2>
+    <div className="Reg-container">
+      <div className="Reg-card">
+        <h2>Create Your Account</h2>
+        <p className="reg-sub">Build your profile and start exploring jobs.</p>
+
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             name="name"
-            placeholder="Full Name"
+            placeholder="Full name"
             value={formData.name}
             onChange={handleChange}
             required
@@ -58,13 +60,13 @@ const Register = () => {
           <input
             type="email"
             name="email"
-            placeholder="Email Address"
+            placeholder="Email address"
             value={formData.email}
             onChange={handleChange}
             required
           />
 
-          <div className="password-wrapper">
+          <div className="password-box">
             <input
               type={showPassword ? "text" : "password"}
               name="password"
@@ -74,7 +76,7 @@ const Register = () => {
               required
             />
             <span
-              className="toggle-eye"
+              className="reg-eye"
               onClick={() => setShowPassword((prev) => !prev)}
             >
               {showPassword ? "🙈" : "👁️"}
@@ -97,19 +99,19 @@ const Register = () => {
           {formData.role === "employer" && (
             <textarea
               name="companyInfo"
-              placeholder="Company Info"
+              placeholder="Company details"
+              rows="3"
               value={formData.companyInfo}
               onChange={handleChange}
-              rows="3"
             />
           )}
 
           <button type="submit">Register</button>
         </form>
 
-        <p>
+        <p className="reg-footer">
           Already have an account?{" "}
-          <span onClick={() => navigate("/login")} className="link">
+          <span onClick={() => navigate("/login")} className="reg-link">
             Login
           </span>
         </p>

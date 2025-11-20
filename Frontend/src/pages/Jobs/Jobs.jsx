@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Jobs.css";
 import { useNavigate } from "react-router-dom";
+import { FaMapMarkerAlt, FaClock, FaMoneyBillWave } from "react-icons/fa";
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -39,15 +40,18 @@ const Jobs = () => {
 
   const handleSearch = () => {
     let result = jobs.filter((job) => {
-      const matchesKeyword =
+      const keyword =
         job.title.toLowerCase().includes(filters.keyword.toLowerCase()) ||
         job.description.toLowerCase().includes(filters.keyword.toLowerCase());
-      const matchesLocation = job.location
+
+      const location = job.location
         .toLowerCase()
         .includes(filters.location.toLowerCase());
-      const matchesType =
+
+      const type =
         filters.jobType === "" || job.jobType === filters.jobType;
-      return matchesKeyword && matchesLocation && matchesType;
+
+      return keyword && location && type;
     });
     setFilteredJobs(result);
   };
@@ -60,16 +64,17 @@ const Jobs = () => {
   return (
     <div className="jobs-page">
       <div className="filters-container">
-        <h2 className="filter-title">Find Your Next Job</h2>
+        <h2 className="filter-title">Find Your Next Opportunity</h2>
 
         <div className="filter-fields">
           <input
             type="text"
             name="keyword"
-            placeholder="Search title or description"
+            placeholder="Search job title or description"
             value={filters.keyword}
             onChange={handleFilterChange}
           />
+
           <input
             type="text"
             name="location"
@@ -77,17 +82,18 @@ const Jobs = () => {
             value={filters.location}
             onChange={handleFilterChange}
           />
+
           <select
             name="jobType"
             value={filters.jobType}
             onChange={handleFilterChange}
           >
             <option value="">All Types</option>
-            <option value="full-time">Full Time</option>
-            <option value="part-time">Part Time</option>
-            <option value="contract">Contract</option>
-            <option value="internship">Internship</option>
-            <option value="Remote">Romote</option>
+            <option value="Full-time">Full Time</option>
+            <option value="Part-time">Part Time</option>
+            <option value="Contract">Contract</option>
+            <option value="Internship">Internship</option>
+            <option value="Remote">Remote</option>
           </select>
 
           <div className="filter-actions">
@@ -104,7 +110,11 @@ const Jobs = () => {
       <div className="jobs-grid">
         {filteredJobs.length > 0 ? (
           filteredJobs.map((job) => (
-            <div key={job._id} className="job-card">
+            <div
+              key={job._id}
+              className="job-card"
+              onClick={() => navigate(`/jobs/${job._id}`)}
+            >
               <div className="job-header">
                 <h3>{job.title}</h3>
                 <span className="job-type">{job.jobType}</span>
@@ -112,22 +122,27 @@ const Jobs = () => {
 
               <p className="company">Posted by {job.employer?.name}</p>
 
-              <p className="location">📍 {job.location}</p>
-
-              <p className="desc">
-                {job.description?.slice(0, 30)}...
+              <p className="job-row">
+                {/* <FaMapMarkerAlt /> */}
+                📍
+                {job.location}
               </p>
 
-              <div className="salary-row">
-                💰 {job.salaryRange.min} - {job.salaryRange.max}
-              </div>
+              <p className="job-row">
+                {/* <FaClock /> */}
+                ⏰
+                {job.jobType}
+              </p>
 
-              <button
-                className="details-btn"
-                onClick={() => navigate(`/jobs/${job._id}`)}
-              >
-                View Details
-              </button>
+              <p className="job-row salary">
+                {/* <FaMoneyBillWave /> */}
+                💰
+                {job.salaryRange.min} - {job.salaryRange.max}
+              </p>
+
+              <p className="desc">{job.description?.slice(0, 50)}...</p>
+
+              <button className="details-btn">View Details</button>
             </div>
           ))
         ) : (

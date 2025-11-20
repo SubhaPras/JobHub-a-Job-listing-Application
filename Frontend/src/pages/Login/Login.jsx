@@ -1,56 +1,64 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import "./Login.css";
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
   const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const res = await axios.post(
-      "http://localhost:3000/api/auth/login",
-      formData,
-      { withCredentials: true }
-    );
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    if (res.data.success) {
-      toast.success("Login successful!");
-      localStorage.setItem("token", res.data.token); 
-      navigate("/jobs");
-    } else {
-      toast.error(res.data.message || "Login failed");
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/api/auth/login",
+        formData,
+        { withCredentials: true }
+      );
+
+      if (res.data.success) {
+        toast.success("Login successful!");
+        localStorage.setItem("token", res.data.token);
+        navigate("/jobs");
+      } else {
+        toast.error(res.data.message || "Login failed");
+      }
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Login failed");
     }
-  } catch (err) {
-    toast.error(err.response?.data?.message || "Login failed");
-  }
-};
-
+  };
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
+    <div className="login-wrapper">
+      <div className="login-card">
         <h2>Welcome Back</h2>
+        <p className="subtitle">Log in to continue your journey</p>
+
         <form onSubmit={handleSubmit}>
           <input
             type="email"
             name="email"
-            placeholder="Email Address"
+            placeholder="Email address"
             value={formData.email}
             onChange={handleChange}
             required
           />
 
-          <div className="password-wrapper">
+          <div className="password-box">
             <input
               type={showPassword ? "text" : "password"}
               name="password"
@@ -60,7 +68,7 @@ const Login = () => {
               required
             />
             <span
-              className="toggle-eye"
+              className="eye"
               onClick={() => setShowPassword((prev) => !prev)}
             >
               {showPassword ? "🙈" : "👁️"}
@@ -70,9 +78,12 @@ const Login = () => {
           <button type="submit">Login</button>
         </form>
 
-        <p>
+        <p className="footer-text">
           Don’t have an account?{" "}
-          <span onClick={() => navigate("/register")} className="link">
+          <span
+            onClick={() => navigate("/register")}
+            className="register-link"
+          >
             Register
           </span>
         </p>

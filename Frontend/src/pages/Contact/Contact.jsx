@@ -40,7 +40,7 @@ const Contact = () => {
         <div className="contact-grid">
 
           {/* LEFT SECTION */}
-          <div className="contact-info">
+          <div className="contact-info box">
             <h3>Our Details</h3>
 
             <p><strong>Email:</strong> support@jobhub.com</p>
@@ -57,7 +57,7 @@ const Contact = () => {
           </div>
 
           {/* RIGHT SECTION */}
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <form className="contact-form box" onSubmit={handleSubmit}>
             <h3>Send a Message</h3>
 
             <label>Name</label>
