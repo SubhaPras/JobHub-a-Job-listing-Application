@@ -1,0 +1,164 @@
+.admin-messages {
+    padding: 40px;
+  }
+  
+  .admin-messages h2 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .loading,
+  .no-messages {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 40px;
+  }
+  
+  /* Grid */
+  .messages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Card */
+  .message-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    transition: 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .message-card:hover {
+    box-shadow: 0 0 6px rgb(0, 186, 219);
+    transform: translateY(-5px);
+  }
+  
+  .message-card h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+  }
+  
+  .message-card .email {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+  }
+  
+  /* Truncated text */
+  .message-card .message-text {
+    font-size: 15px;
+    color: #444;
+    margin-bottom: 15px;
+    max-height: 80px;
+    overflow: hidden;
+  }
+  
+  /* Date */
+  .message-card .date {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 15px;
+  }
+  
+  /* Buttons */
+  .actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .view-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: #0077cc;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  
+  .view-btn:hover {
+    background: #005fa3;
+  }
+  
+  .delete-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: #e63946;
+    color: #fff;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  
+  .delete-btn:hover {
+    background: #d62828;
+  }
+  
+  /* View Message Modal */
+  /* View Message Modal */
+.view-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+  }
+  
+  /* Modal Box */
+  .view-modal-box {
+    background: white;
+    width: 90%;
+    max-width: 520px;
+    max-height: 70vh;
+    padding: 25px;
+    border-radius: 12px;
+    overflow-y: auto;      /* prevents overall overflow */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Message Content */
+  .full-message {
+    margin-top: 12px;
+    padding: 12px;
+    font-size: 15px;
+    color: #444;
+    background: #f4f4f4;
+    border-radius: 8px;
+    white-space: pre-wrap;  /* wraps long text */
+    word-break: break-word; /* handles unbroken long strings */
+    max-height: 40vh;       /* scroll only inside message */
+    overflow-y: auto;
+    line-height: 1.4;
+  }
+  
+  .close-btn {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .close-btn:hover {
+    background: #111;
+  }
+  

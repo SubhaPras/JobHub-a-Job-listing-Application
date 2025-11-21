@@ -32,7 +32,7 @@ export const getEveryjobs = async (req, res) => {
                 message : "admin required"
             })
         }
-        const jobs = await Job.find()
+        const jobs = await Job.find().populate("employer", "name");
         return res.json({
             success : true,
             jobs,
@@ -84,6 +84,38 @@ export const deleteUser = async(req, res) => {
     }
 }
 
+export const deleteJob = async(req, res) => {
+    try {
+        const jobId = req.params.id;
+        await Job.findByIdAndDelete(jobId)
+        return res.json({
+            success : true,
+            message : "job Deleted Successfully!"
+        })
+
+    } catch (error) {
+        return res.json({
+            success : false,
+            message : error.message
+        })
+    }
+}
+
+export const deleteMessage = async(req, res) => {
+    try {
+        const messageId = req.params.id
+        await ContactMessage.findByIdAndDelete(messageId)
+        return res.json({
+            success : true,
+            message : "Message deleted Successfully!"
+        })
+    } catch (error) {
+        return res.json({
+            success : false,
+            message : error.message
+        })
+    }
+}
 
 export const makeAdmin = async (req, res) => {
     try {
@@ -108,4 +140,23 @@ export const makeAdmin = async (req, res) => {
       return res.json({ success: false, message: error.message });
     }
   };
+
+
+  export const getAdminStats = async (req, res) => {
+    try {
+      const users = await User.countDocuments({ role: "user" });
+      const employers = await User.countDocuments({ role: "employer" });
+      const jobs = await Job.countDocuments();
+      const messages = await ContactMessage.countDocuments();
+  
+      res.json({
+        success: true,
+        stats: { users, employers, jobs, messages },
+      });
+    } catch (error) {
+      console.log(error);
+      res.json({ success: false, message: "Something went wrong" });
+    }
+  };
+  
   
