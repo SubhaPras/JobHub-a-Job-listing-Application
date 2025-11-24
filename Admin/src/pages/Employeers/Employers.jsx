@@ -8,7 +8,7 @@ const Employers = () => {
   const [employers, setEmployers] = useState([]);
 
   const [modalOpen, setModalOpen] = useState(false);
-  const [modalAction, setModalAction] = useState(null); // delete | makeAdmin
+  const [modalAction, setModalAction] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
 
   const fetchEmployers = async () => {
@@ -30,14 +30,12 @@ const Employers = () => {
     fetchEmployers();
   }, []);
 
-  // Open popup
   const openModal = (action, id) => {
     setModalAction(action);
     setSelectedId(id);
     setModalOpen(true);
   };
 
-  // Confirm Action
   const handleConfirm = async () => {
     if (!selectedId) return;
 

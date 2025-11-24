@@ -14,12 +14,11 @@ const Jobs = () => {
       const res = await axios.get("http://localhost:3000/api/admin/geteveryjobs", {
         withCredentials: true,
       });
-      console.log(res.data);
-      
+
       if (res.data.success) {
         setJobs(res.data.jobs);
       }
-    } catch (error) {
+    } catch {
       toast.error("Failed to load jobs");
     }
   };
@@ -80,9 +79,7 @@ const Jobs = () => {
           </div>
         ))}
 
-        {jobs.length === 0 && (
-          <p className="no-jobs">No Jobs Found</p>
-        )}
+        {jobs.length === 0 && <p className="no-jobs">No Jobs Found</p>}
       </div>
 
       <ConfirmModal

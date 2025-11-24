@@ -6,10 +6,8 @@ import "./JobSeekers.css";
 
 const JobSeekers = () => {
   const [users, setUsers] = useState([]);
-
-  // Modal State
   const [modalOpen, setModalOpen] = useState(false);
-  const [modalAction, setModalAction] = useState(null); // delete | makeAdmin
+  const [modalAction, setModalAction] = useState(null);
   const [selectedUserId, setSelectedUserId] = useState(null);
 
   const fetchUsers = async () => {
@@ -31,14 +29,12 @@ const JobSeekers = () => {
     fetchUsers();
   }, []);
 
-  // Open modal for delete or make admin
   const openModal = (action, id) => {
     setModalAction(action);
     setSelectedUserId(id);
     setModalOpen(true);
   };
 
-  // Confirm action
   const handleConfirm = async () => {
     if (!selectedUserId) return;
 
@@ -89,8 +85,10 @@ const JobSeekers = () => {
       <div className="jobseekers-grid">
         {users.map((user) => (
           <div className="user-card" key={user._id}>
-            <h3>{user.name}</h3>
-            <p>{user.email}</p>
+            <div className="uc-header">
+              <h3>{user.name}</h3>
+              <span className="uc-email">{user.email}</span>
+            </div>
 
             <div className="actions">
               <button
@@ -115,7 +113,6 @@ const JobSeekers = () => {
         )}
       </div>
 
-      {/* Confirmation Popup */}
       <ConfirmModal
         open={modalOpen}
         title={modalAction === "delete" ? "Delete User" : "Make Admin"}

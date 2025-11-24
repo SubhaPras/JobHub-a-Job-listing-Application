@@ -24,10 +24,11 @@
   .modal-box h3 {
     margin-bottom: 10px;
     font-size: 20px;
+    color: black;
   }
   
   .modal-box p {
-    color: #555;
+    color: black;
     margin-bottom: 20px;
   }
   

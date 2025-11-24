@@ -58,7 +58,7 @@ const AdminDashboard = () => {
             { withCredentials: true }
           );
 
-          if (trendRes.data.success) setTrendData(trendRes.data.trends);
+          if (trendRes?.data?.success) setTrendData(trendRes.data.trends);
         } catch {
           const sample = {
             labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
