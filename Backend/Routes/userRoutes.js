@@ -6,6 +6,6 @@ import upload from "../Middlewares/uploadMiddleware.js"
 const router = express.Router();
 
 router.get("/:id", getUser);
-router.put("/:id",protect , upload.single('resume'), updateUser );
+router.put("/:id",protect , upload, updateUser );
 
 export default router

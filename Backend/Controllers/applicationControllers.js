@@ -1,42 +1,75 @@
 import Application from "../Models/ApplicationModel.js";
 import Job from "../Models/JobModel.js";
+import cloudinary from "../Utils/cloudinary.js";
+import getDataUri from "../Utils/dataUri.js";
 
 export const apply = async (req, res) => {
   try {
-    if (req.user.role !== "user")
-      return res
-        .status(403)
-        .json({ success: false, message: "Only job seekers can apply" });
+    // Only job seekers can apply
+    if (req.user.role !== "user") {
+      return res.status(403).json({
+        success: false,
+        message: "Only job seekers can apply"
+      });
+    }
+
+    // Check job
     const job = await Job.findById(req.params.jobId);
-    if (!job) return res.status(404).json({success : false, message: "Job not found" });
+    if (!job) {
+      return res.status(404).json({
+        success: false,
+        message: "Job not found"
+      });
+    }
 
+    // Prevent duplicate applications
     const existing = await Application.findOne({
-      success: false,
       job: job._id,
-      applicant: req.user._id,
+      applicant: req.user._id
     });
-    if (existing)
-      return res
-        .status(400)
-        .json({ success: false, message: "Already applied" });
 
+    if (existing) {
+      return res.status(400).json({
+        success: false,
+        message: "Already applied"
+      });
+    }
+
+    // Build application data
     const appData = {
       job: job._id,
       applicant: req.user._id,
-      coverLetter: req.body.coverLetter || "",
+      coverLetter: req.body.coverLetter || ""
     };
-    if (req.file) appData.resumeUrl = req.file.path; 
-    
-    const application = new Application(appData);
-    await application.save();
-    res.status(201).json({ success: true, application });
+
+    // Upload resume if provided
+    if (req.file) {
+      const fileUri = getDataUri(req.file); // convert buffer → base64
+      const result = await cloudinary.uploader.upload(fileUri, {
+        folder: "resumes",
+        resource_type: "raw"
+      });
+
+      appData.resumeUrl = result.secure_url;
+    }
+
+    // Save application
+    const application = await Application.create(appData);
+
+    return res.status(201).json({
+      success: true,
+      message: "Application submitted",
+      application
+    });
+
   } catch (err) {
-    res.json({
+    return res.status(500).json({
       success: false,
-      message: err.message,
+      message: err.message
     });
   }
 };
+
 
 export const getApplicants = async (req, res) => {
   try {
