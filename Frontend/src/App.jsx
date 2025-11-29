@@ -15,12 +15,14 @@ import CreateJob from "./pages/CreateJob/CreateJob.jsx";
 import ViewApplicants from "./pages/ViewApplicants/ViewApplicants.jsx";
 import About from "./pages/About/About.jsx";
 import Contact from "./pages/Contact/Contact.jsx";
+import ChatBot from "./components/ChatBot/ChatBot.jsx";
 
 const App = () => {
   return (
       <Router>
         <Navbar />
         <ToastContainer />
+        <ChatBot />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/jobs" element={<Jobs />} />
@@ -34,7 +36,7 @@ const App = () => {
           <Route path="/employerdashboard" element={<EmployerDashboard />} />
           <Route path="/createjob" element={<CreateJob />} />
           <Route path="/employer/applicants/:jobId" element={<ViewApplicants />} />
-
+          
         </Routes>
         <Footer />
       </Router>

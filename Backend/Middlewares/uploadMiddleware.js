@@ -1,23 +1,23 @@
 import multer from "multer";
-import { CloudinaryStorage } from "multer-storage-cloudinary";
+import  CloudinaryStorage  from "multer-storage-cloudinary";
 import cloudinary from "../Utils/cloudinary.js";
 
 const storage = new CloudinaryStorage({
   cloudinary,
-  params: {
-    folder: "resumes", 
+  params: (req, file) => ({
+    folder: "resumes",
     resource_type: "raw",
-    allowed_formats: ["pdf", "doc", "docx"],
-    resource_type: "auto",
-    public_id: (req, file) => Date.now() + "-" + file.originalname.replace(/\s+/g, "-"),
-  },
+    public_id: Date.now() + "-" + file.originalname.replace(/\s+/g, "-"),
+  }),
 });
 
 const fileFilter = (req, file, cb) => {
-  if (/pdf|doc|docx/.test(file.mimetype) || /\.(pdf|doc|docx)$/i.test(file.originalname)) {
+  const allowed = /pdf|doc|docx/;
+
+  if (allowed.test(file.mimetype) || allowed.test(file.originalname)) {
     cb(null, true);
   } else {
-    cb(new Error("Only PDF/DOC/DOCX files are allowed"), false);
+    cb(new Error("Only PDF, DOC, DOCX files are allowed"), false);
   }
 };
 

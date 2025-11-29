@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Home.css";
-import Navbar from "../../components/Navbar/Navbar.jsx";
-import Footer from "../../components/Footer/Footer.jsx";
 import Hero from "../../components/Hero/Hero.jsx";
+import ChatBot from "../../components/ChatBot/ChatBot.jsx";
 
 const Home = () => {
+  const [chatOpen, setChatOpen] = useState(false);
+
   return (
     <div className="home-container">
       <Hero />
@@ -36,8 +37,23 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Floating Chat Button */}
+      <button
+        className="chatbot-button"
+        onClick={() => setChatOpen(true)}
+      >
+        💬
+      </button>
 
-      {/* <Footer /> */}
+      {/* Chatbot Popup */}
+      {chatOpen && (
+  <div className="chatbot-modal-overlay">
+    <div className="chatbot-modal" onClick={(e) => e.stopPropagation()}>
+      <ChatBot onClose={() => setChatOpen(false)} />
+    </div>
+  </div>
+)}
+
     </div>
   );
 };

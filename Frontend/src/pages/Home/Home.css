@@ -91,3 +91,67 @@
     max-width: 350px;
   }
 }
+
+
+/* Floating Chatbot Button */
+.chatbot-button {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 58px;
+  height: 58px;
+  background: #00b4ff;
+  border: none;
+  border-radius: 50%;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 180, 255, 0.4);
+  transition: 0.3s ease;
+  z-index: 3000;
+}
+
+.chatbot-button:hover {
+  transform: scale(1.1);
+  background: #0094d4;
+}
+
+/* Chatbot Popup Style */
+.chatbot-popup {
+  position: fixed;
+  bottom: 100px;
+  right: 28px;
+  width: 360px;
+  height: 500px;
+  background: #0d0f12;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 30px rgba(0, 180, 255, 0.2);
+  overflow: hidden;
+  animation: fadeInUp 0.3s ease;
+  z-index: 3000;
+}
+
+/* Popup Animation */
+@keyframes fadeInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+  .chatbot-popup {
+    width: 92%;
+    right: 4%;
+    height: 480px;
+  }
+}

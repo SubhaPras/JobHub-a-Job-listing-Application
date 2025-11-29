@@ -14,6 +14,7 @@ import jobRoutes from "./Routes/jobRoutes.js";
 import applicationRoutes from "./Routes/applicationRoutes.js";
 import contactRoutes from "./Routes/ContactRoutes.js"
 import adminRoutes from "./Routes/adminRoutes.js"
+import chatBotRoutes from "./Routes/chatBotRoutes.js"
 
 dotenv.config();
 connectDB();
@@ -41,6 +42,8 @@ app.use("/api/jobs", jobRoutes);
 app.use("/api/applications", applicationRoutes );
 app.use("/api/contact", contactRoutes)
 app.use('/api/admin', adminRoutes)
+app.use('/api/chatbot',chatBotRoutes )
+
 // Error handler
 app.use(errorHandler);
 
